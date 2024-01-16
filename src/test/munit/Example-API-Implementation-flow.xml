@@ -24,7 +24,7 @@
         </munit:execution>
 
         <!-- Assertions -->
-        <munit:assert-that expression="#[payload]" is="#['{\"message\": \"Hello, World!\"}']"/>
+        <munit:assert-that expression="#[payload]" is="Hello, World!"/>
     </munit:test>
 
 </mule>

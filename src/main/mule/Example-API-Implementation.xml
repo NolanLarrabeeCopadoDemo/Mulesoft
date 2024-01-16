@@ -24,7 +24,7 @@
             <!-- Define your API implementation logic here -->
             <!-- Example: Echo back a JSON response -->
             <http:listener config-ref="HTTP_Listener_Configuration" path="/example" allowedMethods="GET"/>
-            <set-payload value="#['{\"message\": \"Hello, World!\"}']"/>
+            <set-payload value="Hello, World!"/>
         </flow>
     </api>
 </mule>
