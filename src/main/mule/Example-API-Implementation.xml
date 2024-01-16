@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns="http://www.mulesoft.org/schema/mule/core"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core
+                          http://www.mulesoft.org/schema/mule/core/current/mule.xsd">
+
+    <!-- API Configuration -->
+    <api platform="mule" apiVersion="1.0.0" spec="1.0.0">
+
+        <!-- API Definition -->
+        <api-definition name="example-api">
+            <!-- Define your API resources, methods, and other details here -->
+            <!-- Example Resource -->
+            <resource path="/example">
+                <method method="GET">
+                    <response status="200" mimeType="application/json"/>
+                </method>
+            </resource>
+        </api-definition>
+
+        <!-- API Implementation -->
+        <flow name="example-api-implementation">
+            <!-- Define your API implementation logic here -->
+            <!-- Example: Echo back a JSON response -->
+            <http:listener config-ref="HTTP_Listener_Configuration" path="/example" allowedMethods="GET"/>
+            <set-payload value="#['{\"message\": \"Hello, World!\"}']"/>
+        </flow>
+    </api>
+</mule>

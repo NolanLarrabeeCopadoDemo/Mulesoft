@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns="http://www.mulesoft.org/schema/mule/core"
+      xmlns:munit="http://www.mulesoft.org/schema/mule/munit"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core
+                          http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+                          http://www.mulesoft.org/schema/mule/munit
+                          http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd">
+
+    <!-- MUnit Test Suite -->
+    <munit:test name="example-api-test-suite">
+
+        <!-- Mocking the HTTP Request -->
+        <munit:config name="httpListenerConfig" />
+        <munit:config name="httpRequestConfig" />
+        <munit:mocking-config>
+            <munit:when messageProcessor="http:listener" config-ref="httpListenerConfig" />
+        </munit:mocking-config>
+
+        <!-- Test Flow -->
+        <munit:execution>
+            <flow-ref name="example-api-implementation" />
+        </munit:execution>
+
+        <!-- Assertions -->
+        <munit:assert-that expression="#[payload]" is="#['{\"message\": \"Hello, World!\"}']"/>
+    </munit:test>
+
+</mule>
